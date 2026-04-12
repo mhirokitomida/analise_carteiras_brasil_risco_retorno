@@ -1,0 +1,2 @@
+arquivo_html_raiz,arquivo_html_resultados,js_retornos_part1,js_retornos_part2,js_retornos_part3,js_metricas,js_testes,js_resumo,js_meta,status,data_inicio_comum,data_fim_comum
+index.html,resultados\html\index.html,resultados\html_assets\retornos_data_part1.js,resultados\html_assets\retornos_data_part2.js,resultados\html_assets\retornos_data_part3.js,resultados\html_assets\metricas_data.js,resultados\html_assets\testes_data.js,resultados\html_assets\resumo_data.js,resultados\html_assets\meta_data.js,gerado_com_sucesso,2015-01-01,2025-12-01
