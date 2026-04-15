@@ -1,4 +1,4 @@
-# 📊 Carteiras no Mercado Brasileiro: Aleatórias vs Setoriais vs Markowitz
+# 📊 Carteiras no Mercado Brasileiro: Aleatórias vs Setoriais vs Markowitz Restrito
 
 👉 **[🔗 Acesse o Dashboard Interativo (GitHub Pages)](https://mhirokitomida.github.io/analise_carteiras_brasil_risco_retorno/)**
 
@@ -10,27 +10,25 @@ Este projeto investiga como diferentes abordagens de construção de carteiras s
 
 Foram comparadas estratégias baseadas em:
 
-- 🎲 **Carteiras aleatórias** (diversificação sem viés)  
-- 🧱 **Carteiras por setor e subsetor** (concentração)  
-- ⚖️ **Otimização via Teoria de Portfólio de Markowitz**  
+- 🎲 **Carteiras aleatórias** (diversificação ampla sem regra econômica explícita)  
+- 🧱 **Carteiras por setor e subsetor** (concentração temática)  
+- ⚖️ **Otimização via Markowitz restrito** (média-variância com limite de peso por ativo)  
 - 📊 **Benchmark de mercado (Ibovespa)**  
 
-A análise vai além do retorno puro, incorporando risco, eficiência e testes estatísticos para avaliar a robustez dos resultados.
+A análise vai além do retorno puro, incorporando risco, eficiência risco-retorno e testes estatísticos para avaliar a robustez dos resultados.
 
 ---
 
 ## 🎯 Objetivo
 
-Avaliar, de forma quantitativa e estatística, se existe evidência de que:
+Avaliar, de forma quantitativa e estatística, como diferentes formas de diversificação e concentração produzem perfis distintos de desempenho no mercado brasileiro.
 
-- 📌 Carteiras aleatórias podem gerar retornos competitivos  
-- 📌 A otimização de portfólio melhora a eficiência risco-retorno  
+Em especial, o projeto busca investigar:
 
-Além disso, o projeto busca entender:
-
-- O impacto da **diversificação vs concentração**  
-- A diferença entre **retorno absoluto e qualidade do retorno**  
-- Se os resultados observados são **robustos ou fruto do acaso**  
+- 📌 se carteiras aleatórias podem gerar retornos competitivos  
+- 📌 se a otimização de portfólio melhora a relação entre retorno e risco  
+- 📌 como carteiras concentradas por setor e subsetor se comportam frente a abordagens mais diversificadas  
+- 📌 até que ponto as diferenças observadas parecem consistentes dentro da amostra analisada  
 
 ---
 
@@ -44,8 +42,8 @@ A análise foi construída em etapas estruturadas:
 
 - Dados históricos de preços ajustados  
 - Base consolidada de ativos do mercado brasileiro  
-- Inclusão do benchmark (**IBOVESPA**)  
-- Padronização temporal e limpeza dos dados  
+- Inclusão do benchmark (**Ibovespa**)  
+- Padronização temporal e alinhamento das séries em período comum  
 
 ---
 
@@ -54,19 +52,20 @@ A análise foi construída em etapas estruturadas:
 Foram construídos diferentes grupos de carteiras:
 
 #### 🎲 Carteiras aleatórias
-- Mais de 1000 carteiras simuladas  
-- Diferentes tamanhos (número de ativos)  
-- Alta diversidade de combinações  
+- Mais de **1000 carteiras simuladas**
+- Diferentes tamanhos (número de ativos)
+- Alta diversidade de combinações
 
 #### 🧱 Carteiras concentradas
-- Carteiras por **setor**  
-- Carteiras por **subsetor**  
-- Representam exposição concentrada  
+- Carteiras por **setor**
+- Carteiras por **subsetor**
+- Exposição concentrada a grupos específicos do mercado
 
 #### ⚖️ Carteiras otimizadas
-- Otimização via Teoria de Portfólio de Markowitz  
-- Janela de estimação sem look-ahead  
-- Rebalanceamento periódico  
+- Otimização via **Markowitz restrito**
+- Janela de estimação histórica sem look-ahead
+- Rebalanceamento periódico
+- Restrição de peso máximo por ativo
 
 ---
 
@@ -82,39 +81,43 @@ Para cada carteira:
 
 ### 4. Métricas de avaliação
 
-Foram calculadas métricas fundamentais:
+Foram calculadas métricas centrais de desempenho e risco:
 
 - 📈 Retorno anualizado  
 - 📊 Volatilidade  
-- ⚖️ Sharpe Ratio  
+- ⚖️ **Sharpe simplificado**  
 - 📉 Drawdown máximo  
-- 📊 Sortino e Calmar  
+- 📊 **Sortino simplificado**  
+- 📈 Calmar  
+
+> **Observação:** o Sharpe e o Sortino utilizados no projeto são versões **simplificadas**, aplicadas de forma padronizada a todas as estratégias. Isso preserva a comparabilidade relativa entre as carteiras, embora não corresponda exatamente às formulações clássicas com taxa livre de risco explícita.
 
 ---
 
 ### 5. Análise estatística
 
-Para validar os resultados:
+Para validar os resultados, foram utilizados:
 
-- Teste de **Mann-Whitney**  
-- Teste de **Wilcoxon pareado**  
-- **Bootstrap** (intervalos de confiança)  
-- **Teste de permutação**  
+- **Mann-Whitney** para comparações independentes  
+- **Wilcoxon pareado** como teste principal entre Markowitz restrito e a carteira aleatória correspondente  
+- **Bootstrap pareado** para estimar a diferença média com intervalo de confiança  
+- **Permutação pareada** para reforçar a robustez da evidência  
 
 ---
 
 ## 📈 Principais Resultados
 
-- Carteiras **aleatórias** apresentaram maior retorno médio anual  
-- O modelo de **Markowitz** apresentou maior eficiência risco-retorno (Sharpe superior)  
-- O **drawdown** foi menor nas carteiras otimizadas  
+- O **Markowitz restrito** apresentou o melhor desempenho agregado do projeto  
+- O grupo liderou em **retorno anual médio**, **Sharpe simplificado médio** e **drawdown médio menos severo**  
+- As carteiras **aleatórias** continuaram fortes e **superaram o Ibovespa** no agregado  
 - Carteiras **setoriais e subsetoriais** foram as menos eficientes no agregado  
-- Parte do desempenho das carteiras aleatórias reflete o **efeito do acaso** em um grande conjunto de combinações  
+- Parte do desempenho das carteiras aleatórias continua refletindo o **efeito do acaso** em um universo amplo de combinações  
+- A comparação **pareada** reforçou a vantagem do Markowitz restrito sobre as aleatórias correspondentes  
 
 👉 Isso sugere que:
 
 > A diversificação simples já é poderosa —  
-> mas eficiência e controle de risco exigem otimização.
+> mas, neste estudo, a otimização com restrição de peso produziu o melhor equilíbrio entre retorno e risco.
 
 ---
 
@@ -122,13 +125,13 @@ Para validar os resultados:
 
 O projeto inclui um relatório HTML interativo com:
 
-- 📈 Gráfico dinâmico com séries de retorno  
-- 🎛️ Filtros por tipo de carteira e modo (resumo vs individual)  
-- 📊 Tabela interativa sincronizada com o gráfico  
-- 📉 Distribuições de retorno e Sharpe  
-- 📊 Boxplots e dispersão risco-retorno  
-- 🏆 Ranking interativo por métricas  
-- 🔍 Exploração detalhada das carteiras  
+- 📈 gráfico dinâmico com séries de retorno  
+- 🎛️ filtros por tipo de carteira e modo (resumo vs individual)  
+- 📊 tabela interativa sincronizada com o gráfico  
+- 📉 distribuições de retorno e Sharpe simplificado  
+- 📊 boxplots e dispersão risco-retorno  
+- 🏆 ranking interativo por métricas  
+- 🔍 exploração detalhada das carteiras  
 
 ---
 
@@ -141,26 +144,27 @@ O projeto inclui um relatório HTML interativo com:
 ## ⚠️ Observações importantes
 
 - A análise utiliza **carteiras simuladas**, não recomendações reais  
-- Resultados são **sensíveis ao período analisado**  
-- A otimização de Markowitz depende das estimativas de retorno e covariância  
+- Os resultados são **sensíveis ao período analisado**  
+- A otimização de Markowitz restrito depende das estimativas de retorno e covariância  
 - Parte dos resultados pode ser influenciada por **variabilidade aleatória**  
 - O estudo identifica **associação empírica**, não causalidade  
-- O benchmark utilizado foi o **IBOVESPA**  
+- O benchmark utilizado foi o **Ibovespa**  
+- Algumas carteiras Markowitz com histórico insuficiente foram descartadas das métricas finais por critério mínimo de observações  
 
 ---
 
 ## 🧠 Principais Aprendizados
 
-- A **diversificação simples** já produz resultados competitivos  
-- Carteiras **aleatórias** superaram o benchmark no agregado  
-- Parte desse desempenho reflete o **efeito do acaso**, não uma superioridade estrutural  
-- O modelo de **Markowitz** melhora significativamente a eficiência risco-retorno  
-- O Markowitz apresentou **Sharpe mais alto** e **menor drawdown**  
-- Carteiras **concentradas** foram as menos eficientes  
-- A concentração aumenta risco sem compensação proporcional  
-- Os testes estatísticos indicam que as diferenças não são apenas ruído  
-- Retorno e eficiência são dimensões distintas — não apontam o mesmo vencedor  
-- A escolha da estratégia depende do objetivo do investidor  
+- A **diversificação simples** já produz resultados fortes e competitivos  
+- As **carteiras aleatórias** superaram o benchmark no agregado  
+- Parte desse desempenho reflete o **efeito do acaso**, e não uma superioridade estrutural da aleatoriedade  
+- O **Markowitz restrito** liderou o agregado em **retorno anual médio**, **Sharpe simplificado médio** e **drawdown médio**  
+- A comparação **pareada** reforçou a vantagem do Markowitz restrito sobre as aleatórias correspondentes  
+- Carteiras **concentradas** foram as menos eficientes no agregado  
+- A concentração aumentou risco sem compensação proporcional em retorno  
+- Os testes estatísticos reforçaram que a vantagem observada do Markowitz restrito sobre as aleatórias correspondentes não parece ser apenas ruído  
+- **Sharpe** e **Sortino** foram usados em versões **simplificadas**, preservando a comparabilidade relativa entre as estratégias  
+- A escolha da estratégia continua dependendo do objetivo do investidor, mas, neste estudo, o **Markowitz restrito** foi a solução mais forte no agregado  
 
 ---
 
@@ -168,14 +172,12 @@ O projeto inclui um relatório HTML interativo com:
 
 O estudo reforça uma ideia central:
 
-> Não existe uma estratégia única superior em todas as dimensões analisadas.
+> **Diversificar já ajuda muito, mas otimizar ajudou ainda mais neste recorte.**
 
-Carteiras aleatórias se destacaram em retorno médio, enquanto o modelo de Markowitz se destacou em eficiência e controle de risco.
+As carteiras aleatórias continuaram mostrando que a diversificação ampla pode gerar resultados muito competitivos, inclusive acima do benchmark. No entanto, após os ajustes metodológicos e a revisão da análise, o **Markowitz restrito** passou a se destacar como a abordagem mais completa do projeto, combinando **maior retorno médio**, **melhor eficiência risco-retorno** e **menor severidade média de drawdown**.
 
-Além disso, o papel do acaso não deve ser ignorado. Em um universo amplo de carteiras, algumas combinações naturalmente se destacam, o que ajuda a explicar parte do desempenho das carteiras aleatórias. Isso não significa que investir de forma aleatória seja a melhor estratégia, mas sim que a diversificação, combinada com variabilidade, pode gerar resultados competitivos.
+Isso não elimina a importância da diversificação simples, nem invalida o papel do acaso em parte do sucesso das carteiras aleatórias. O que o projeto sugere é que, partindo de uma base já diversificada, a **otimização com restrição de peso** conseguiu melhorar ainda mais o equilíbrio entre retorno e risco.
 
 Em termos práticos:
 
-> Diversificar já é poderoso —  
-> otimizar melhora a eficiência —  
-> e a melhor estratégia depende do equilíbrio entre retorno e risco.
+> **a diversificação é poderosa, mas a otimização restrita de pesos foi a estratégia mais robusta no agregado dentro da amostra analisada.**
